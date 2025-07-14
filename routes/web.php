@@ -1,18 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UtilController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('utils.homepage');
-})->name('home_name');
+Route::get('/home', [UtilController::class, 'index'])->name('home_name');
 
-Route::get('/hello', function(){
-    return "<h1>Olá Mundo</h1> <a href=".route('home_name').">Voltar</a>";
-})->name('hello_route_name');
+Route::get('/hello', [UtilController::class, 'sayHello'])->name('hello_route_name');
 
 Route::get('/curso', function(){
     return '<h1>Olá alunos SD</h1>';
@@ -22,9 +20,7 @@ Route::get('/modules/{name}', function($name){
     return '<h1>Este é o módulo de:'.$name.'</h1>';
 });
 
-Route::get('/add-users', function(){
-    return view('users.add_user');
-})->name('users.add');
+Route::get('/add-users', [UserController::class, 'createUser'])->name('users.add');
 
 
 Route::fallback(function(){
