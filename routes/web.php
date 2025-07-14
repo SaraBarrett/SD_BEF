@@ -22,7 +22,9 @@ Route::get('/modules/{name}', function($name){
     return '<h1>Este é o módulo de:'.$name.'</h1>';
 });
 
-
+Route::get('/add-users', function(){
+    return view('users.add_user');
+})->name('users.add');
 
 
 Route::fallback(function(){
