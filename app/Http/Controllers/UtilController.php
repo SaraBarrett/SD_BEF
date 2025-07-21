@@ -16,7 +16,9 @@ class UtilController extends Controller
             'phone' => '96666666'
         ];
 
-        return view('utils.homepage', compact('myName', 'loginUser'));
+        $cesaeInfo = $this->getCesaeInfo();
+
+        return view('utils.homepage', compact('myName', 'loginUser','cesaeInfo'));
     }
 
     public function sayHello(){
@@ -29,6 +31,15 @@ class UtilController extends Controller
         $myName = 'Sara';
         return $myName;
 
+    }
+
+    private function getCesaeInfo(){
+
+        //simula dinamicamente ir à base de dados
+        return $cesaeInfo = [
+            'name' => 'Cesae',
+            'address' => 'RUa do Cesae'
+        ];
     }
 
 }

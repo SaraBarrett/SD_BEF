@@ -24,7 +24,12 @@ class UserController extends Controller
     private function getUsers(){
 
         //simula ir à base de dados carregar todos os users
-        $users = ['João', 'Joana', 'Márcia'];
+        $users = [
+            ['id' => 1, 'name'=> 'Rita', 'phone'=> '915555555'],
+            ['id' => 2, 'name'=> 'Rui', 'phone'=> '915555555'],
+            ['id' => 3, 'name'=> 'Patrícia', 'phone'=> '915555555'],
+        ];
+
         return $users;
     }
 }
