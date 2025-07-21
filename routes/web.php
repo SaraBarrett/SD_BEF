@@ -24,6 +24,8 @@ Route::get('/add-users', [UserController::class, 'createUser'])->name('users.add
 
 Route::get('/users', [UserController::class, 'allUsers'])->name('users.all');
 
+Route::get('/test-queries', [UserController::class, 'testSqlQueries']);
+
 
 Route::fallback(function(){
     return "<a href=".route('hello_route_name').">Estás perdido?</a>";
