@@ -18,7 +18,11 @@ class UserController extends Controller
         //simula ir à base de dados carregar todos os users
         $users = $this->getUsers();
 
-        return view('users.all_users', compact('users'));
+        //ir de forma real à base de dados
+        $usersFromDB = $this->getUsersFromDB();
+
+        //carrega a view users.all_users com os dados de $users e $usersFromDB
+        return view('users.all_users', compact('users', 'usersFromDB'));
     }
 
     public function testSqlQueries(){
@@ -31,13 +35,31 @@ class UserController extends Controller
         // ]);
 
         //query de update. no futuro, os dados a actualizar vêm do formulário (resquest)
-        DB::table('users')
-        ->where('id', 4)
-        ->update([
-            'name' => 'Rita',
-            'address'=> 'Rua da Rita',
-            'updated_at' => now()
-        ]);
+        // DB::table('users')
+        // ->where('id', 4)
+        // ->update([
+        //     'name' => 'Rita',
+        //     'address'=> 'Rua da Rita',
+        //     'updated_at' => now()
+        // ]);
+
+
+        //Update or insert
+
+        // DB::table('users')->updateOrInsert(
+        // [
+        //     'email'=>'sara90@gmail.com',
+        // ],
+        // [
+        //     'name'=> 'Bárbara',
+        //     'password'=>'1234',
+        //     'updated_at' => now(),
+        // ]);
+
+        //apagar o user com id 3
+        // DB::table('users')
+        // ->where('id',3)
+        // ->delete();
 
         return response()->json('query ok!');
     }
@@ -50,6 +72,15 @@ class UserController extends Controller
             ['id' => 2, 'name'=> 'Rui', 'phone'=> '915555555'],
             ['id' => 3, 'name'=> 'Patrícia', 'phone'=> '915555555'],
         ];
+
+        return $users;
+    }
+
+    private function getUsersFromDB(){
+        //query real que vai à base de dados buscar todos os users
+        $users = db::table('users')->get();
+
+        //dd($users);
 
         return $users;
     }
