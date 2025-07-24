@@ -21,6 +21,11 @@ class UserController extends Controller
         //ir de forma real à base de dados
         $usersFromDB = $this->getUsersFromDB();
 
+        $courseResp = DB::table('users')
+                        ->where('id', 5)
+                        ->get();
+
+
         //carrega a view users.all_users com os dados de $users e $usersFromDB
         return view('users.all_users', compact('users', 'usersFromDB'));
     }
@@ -78,7 +83,9 @@ class UserController extends Controller
 
     private function getUsersFromDB(){
         //query real que vai à base de dados buscar todos os users
-        $users = db::table('users')->get();
+        $users = db::table('users')
+        //->where('password', '!=', '1234')
+        ->get();
 
         //dd($users);
 
