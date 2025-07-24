@@ -1,6 +1,11 @@
 @extends('layouts.fe_master')
 @section('content')
     <h4>Aqui terás todos os users</h4>
+    <h6>Responsável</h6>
+    <ul>
+        <li>Nome: {{ $courseResp ? $courseResp->name : 'ainda não atribuído' }}</li>
+        <li>Email: {{ $courseResp ? $courseResp->email : 'geral@cesae.pt' }}</li>
+    </ul>
 
     <ul>
         @foreach ($users as $user)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,13 +22,18 @@ class UserController extends Controller
         //ir de forma real à base de dados
         $usersFromDB = $this->getUsersFromDB();
 
-        $courseResp = DB::table('users')
-                        ->where('id', 5)
-                        ->get();
+        $courseResp = User::where('id', 5)
+                        ->select('name', 'email')
+                        ->first();
+
+        //dd($courseResp->name);
 
 
         //carrega a view users.all_users com os dados de $users e $usersFromDB
-        return view('users.all_users', compact('users', 'usersFromDB'));
+        return view('users.all_users', compact(
+            'users',
+            'usersFromDB',
+            'courseResp'));
     }
 
     public function testSqlQueries(){
@@ -83,9 +89,8 @@ class UserController extends Controller
 
     private function getUsersFromDB(){
         //query real que vai à base de dados buscar todos os users
-        $users = db::table('users')
+        $users = User::get();
         //->where('password', '!=', '1234')
-        ->get();
 
         //dd($users);
 
