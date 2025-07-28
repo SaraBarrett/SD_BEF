@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -73,6 +74,21 @@ class UserController extends Controller
         // ->delete();
 
         return response()->json('query ok!');
+    }
+
+    //função que retorna a view de um user (o que estámos a clicar)
+    public function viewUser($id){
+        $myUser = User::where('id', $id)->first();
+
+        return view('users.show_user', compact('myUser'));
+    }
+
+    public function deleteUser($id){
+        Task::where('user_id', $id)->delete();
+
+        User::where('id', $id)->delete();
+
+        return back();
     }
 
     private function getUsers(){
