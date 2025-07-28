@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -89,6 +90,24 @@ class UserController extends Controller
         User::where('id', $id)->delete();
 
         return back();
+    }
+
+    public function storeUser(Request $request){
+
+        $request->validate([
+            'name' => 'string|max:50|required',
+            'email' => 'required|unique:users|email'
+        ]);
+
+
+        User::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('users.all');
+
     }
 
     private function getUsers(){
