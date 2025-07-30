@@ -1,5 +1,12 @@
 @extends('layouts.fe_master')
 @section('content')
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{session('message')}}
+        </div>
+    @endif
+
+
     <h4>Aqui terás todos os users</h4>
     <h6>Responsável</h6>
     <ul>
@@ -32,7 +39,8 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->nif }}</td>
-                    <td><a href="{{route('user.show', $user->id)}}" class="btn btn-info me-2">Ver</a><a href="{{route('users.delete', $user->id)}}" class="btn btn-danger">Apagar</a></td>
+                    <td><a href="{{ route('user.show', $user->id) }}" class="btn btn-info me-2">Ver</a><a
+                            href="{{ route('users.delete', $user->id) }}" class="btn btn-danger">Apagar</a></td>
                 </tr>
             @endforeach
 

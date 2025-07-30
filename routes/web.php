@@ -27,8 +27,6 @@ Route::post('/store-user', [UserController::class, 'storeUser'])->name('users.st
 
 Route::get('/users', [UserController::class, 'allUsers'])->name('users.all');
 Route::get('/view-user/{id}', [UserController::class, 'viewUser'])->name('user.show');
-
-
 Route::get('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
 
 /* routes for Tasks */
