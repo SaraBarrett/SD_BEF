@@ -2,7 +2,7 @@
 @section('content')
     @if (session('message'))
         <div class="alert alert-success">
-            {{session('message')}}
+            {{ session('message') }}
         </div>
     @endif
 
@@ -39,7 +39,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->nif }}</td>
-                    <td><a href="{{ route('user.show', $user->id) }}" class="btn btn-info me-2">Ver</a><a
+                    <td><a href="{{ route('user.show', $user->id) }}" class="btn btn-info me-2">Ver / Editar</a><a
                             href="{{ route('users.delete', $user->id) }}" class="btn btn-danger">Apagar</a></td>
                 </tr>
             @endforeach

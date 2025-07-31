@@ -22,7 +22,13 @@ Route::get('/modules/{name}', function($name){
 /* routes for Users */
 //rota que nos vai carregar um formulário
 Route::get('/add-users', [UserController::class, 'createUser'])->name('users.add');
+
+//rota que nos pega nos dados do formulário e os envia para o servidor
 Route::post('/store-user', [UserController::class, 'storeUser'])->name('users.store');
+
+
+//rota que pega nos dados do formulário para fazer um update
+Route::put('/update-user', [UserController::class, 'updateUser'])->name('users.update');
 
 
 Route::get('/users', [UserController::class, 'allUsers'])->name('users.all');

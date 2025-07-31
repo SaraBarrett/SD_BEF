@@ -106,8 +106,26 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        
+
         return redirect()->route('users.all')->with('message', 'Utilizador adicionado com sucesso!');
+
+    }
+
+    public function updateUser(Request $request){
+        //dd($request->all());
+
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        User::where('id', $request->id)
+        ->update([
+            'name' => $request->name,
+            'nif'=> $request->nif,
+            'address'=> $request->address,
+        ]);
+
+        return redirect()->route('users.all')->with('message', 'Utilizador actualizado com sucesso!');
 
     }
 
