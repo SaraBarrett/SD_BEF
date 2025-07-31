@@ -1,7 +1,11 @@
 @extends('layouts.fe_master')
 @section('content')
     <h4>Aqui terás todas as tarefas</h4>
-
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     <table class="table">
         <thead>
             <tr>
@@ -9,6 +13,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Description</th>
                 <th scope="col">Nome Responsável</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +23,8 @@
                     <td>{{ $task->name }}</td>
                     <td>{{ $task->description }}</td>
                     <td>{{ $task->username }}</td>
+                    <td><a href="{{ route('tasks.show', $task->id) }}" class="btn btn-info me-2">Ver / Editar</a><a
+                            href="{{ route('tasks.delete', $task->id) }}" class="btn btn-danger">Apagar</a></td>
                 </tr>
             @endforeach
 

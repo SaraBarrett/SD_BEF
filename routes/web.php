@@ -37,8 +37,11 @@ Route::get('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('us
 
 /* routes for Tasks */
 Route::get('/tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
-
-
+Route::get('/add-tasks', [TaskController::class, 'createTask'])->name('tasks.add');
+Route::post('/store-task', [TaskController::class, 'storeTask'])->name('tasks.store');
+Route::get('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
+Route::get('/view-task/{id}', [TaskController::class, 'viewTask'])->name('tasks.show');
+Route::put('/update-task', [TaskController::class, 'updateTask'])->name('tasks.update');
 
 /* routes for testing proposes */
 Route::get('/test-queries', [UserController::class, 'testSqlQueries']);
