@@ -36,7 +36,8 @@ Route::get('/view-user/{id}', [UserController::class, 'viewUser'])->name('user.s
 Route::get('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
 
 /* routes for Tasks */
-Route::get('/tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
+Route::get('/tasks', [TaskController::class, 'allTasks'])->name('tasks.all')->middleware('auth');
+
 Route::get('/add-tasks', [TaskController::class, 'createTask'])->name('tasks.add');
 Route::post('/store-task', [TaskController::class, 'storeTask'])->name('tasks.store');
 Route::get('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');

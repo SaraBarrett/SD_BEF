@@ -44,5 +44,13 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
+
+        //"activa" a função de login do fortify, retornando a view auth.login
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
+
+
+
     }
 }
