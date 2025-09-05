@@ -2,8 +2,8 @@
 
 
 @section('content')
-    <h6>Login</h6>
-    <form method="POST" action="{{ route('login') }}">
+    <h6>Recuperar Pass</h6>
+    <form method="POST" action="{{ route('password.email') }}">
         @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -14,12 +14,7 @@
                 email inválido
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input required name="password" type="password" class="form-control" id="exampleInputPassword1">
-        </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
-        Esqueceu-se da pass? Clique <a href="{{ route('password.request') }}">aqui</a>
+        <button type="submit" class="btn btn-primary">Recuperar</button>
     </form>
 @endsection

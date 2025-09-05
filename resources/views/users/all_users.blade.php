@@ -23,13 +23,14 @@
     <hr>
     <h4>Users vindos da Base de dados</h4>
     <form action="">
-        <input type="text" placeholder="Insira o que quer pesquisar" name="search" value="{{request()->query('search')}}">
+        <input type="text" placeholder="Insira o que quer pesquisar" name="search" value="{{ request()->query('search') }}">
         <button type="submit" class="btn btn-info">Pesquisar</button>
     </form>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th></th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
                 <th scope="col">NIF</th>
@@ -40,6 +41,9 @@
             @foreach ($usersFromDB as $user)
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
+                    <td><img width="40px" height="40px"
+                            src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('images/nophoto.jpg') }}"
+                            alt=""></td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->nif }}</td>
